@@ -1,0 +1,224 @@
+@import "var.scss";
+@import "global.scss";
+
+.the-header {
+  position: fixed;
+  @include layout(space-between, center);
+  width: 100%;
+  height: $header-height;
+  line-height: $header-height;
+  padding: $header-padding;
+  margin: $header-margin;
+  background: rgba(255, 255, 255, 0.9);
+  @include box-shadow($box-shadow);
+  box-sizing: border-box;
+  z-index: 100;
+  backdrop-filter: blur(8px);
+}
+
+.header-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #e8f0ff;
+  color: #1d4ed8;
+  font-size: 12px;
+  border: 1px solid #c7d2fe;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.header-back:hover {
+  transform: translateY(-1px);
+  background: #dbe7ff;
+}
+
+.header-logo {
+  margin: 0 24px 0 0;
+  font-size: $font-size-logo;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  cursor: pointer;
+  .logo-text {
+    letter-spacing: 2px;
+    background: linear-gradient(135deg, #111827 0%, #2563eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .icon {
+    @include icon(($header-height / 3) * 2, $color-black);
+    vertical-align: middle;
+  }
+}
+
+/*nav*/
+.navbar {
+  height: $header-height;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 6px;
+  li {
+    margin: 0 8px;
+    padding: 4px 12px;
+    height: 32px;
+    line-height: 32px;
+    font-size: $font-size-header;
+    color: $color-grey;
+    text-align: center;
+    border-bottom: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    border-radius: 999px;
+    transition: all 0.2s ease;
+    &:hover {
+      background: #eaf1ff;
+      color: $color-black;
+    }
+  }
+}
+
+.nav-search {
+  padding: 0 8px;
+}
+
+.nav-ghost {
+  border: 1px solid #e2e8f0;
+}
+
+/*搜索*/
+.header-search {
+  @include layout;
+  border-radius: $header-search-radius;
+  overflow: hidden;
+  border: 1px solid $color-light-grey;
+  background: #ffffff;
+  input {
+    height: $header-search-height;
+    width: $header-search-width;
+    font-size: $font-size-default;
+    border: 0;
+    text-indent: 10px;
+    background-color: transparent;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .search-btn {
+    @include layout(center, center);
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+    width: $header-search-btn-width;
+    height: $header-search-btn-height;
+    cursor: pointer;
+    .icon {
+      @include icon(1.2em, $color-white);
+    }
+  }
+}
+
+/*用户*/
+.header-right {
+  position: relative;
+  @include layout(center, center);
+  flex: 0 0 auto;
+  #user {
+    overflow: hidden;
+    width: 65px;
+    height: 65px;
+    border-radius: 12px;
+    margin: $header-user-margin;
+    cursor: pointer;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.menu {
+  display: none;
+  line-height: 0px;
+  position: absolute;
+  background-color: $color-white;
+  @include box-shadow(1px 1px 10px rgba(0, 0, 0, 0.4));
+  width: $header-menu-width;
+  padding: $header-menu-padding;
+  border-radius: 12px;
+  top: $header-height + 10px;
+  right: -20px;
+  z-index: 5;
+  text-align: center;
+  cursor: pointer;
+
+  li {
+    display: inline-block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+
+    &:hover {
+      background-color: $theme-color;
+      color: $color-white;
+    }
+  }
+
+  :nth-child(1):before {
+    content: " ";
+    display: block; /*独占一行*/
+    position: absolute;
+    right: 45px;
+    top: -5px; /*果断的露出上半部分*/
+    width: 10px;
+    height: 10px;
+    background-color: $color-white;
+    /*一个正方形倾斜四十五度就是三角了但是要把下半部分藏起来*/
+    transform: rotate(45deg);
+  }
+  // :nth-child(1):hover:before {
+  // background-color: $theme-color;
+  // }
+}
+
+.show {
+  display: block;
+}
+
+.active {
+  color: $theme-color !important;
+  background: #eaf1ff;
+  border-bottom: none !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1100px) {
+  .the-header {
+    padding: 0 24px;
+  }
+
+  .header-logo {
+    margin: 0 16px 0 0;
+  }
+
+  .header-search input {
+    width: 180px;
+  }
+}
+
+@media (max-width: 900px) {
+  .navbar {
+    justify-content: flex-start;
+    overflow-x: auto;
+  }
+}

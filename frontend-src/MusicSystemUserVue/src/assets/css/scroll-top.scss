@@ -1,0 +1,52 @@
+@import "var.scss";
+@import "global.scss";
+
+.scroll-top {
+  position: fixed;
+  width: 44px;
+  height: 44px;
+  right: 16px;
+  bottom: 92px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 14px;
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+  @include box-shadow(0 10px 24px rgba(15, 23, 42, 0.12));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+
+  &:hover:before {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  &:hover .box-in {
+    visibility: hidden;
+  }
+
+  &:before {
+    content: "回到顶部";
+    position: absolute;
+    font-weight: 600;
+    font-size: 11px;
+    width: 60px;
+    top: 6px;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -8px);
+    transition: all 0.2s ease;
+  }
+}
+
+.box-in {
+  visibility: visible;
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  border: 2px solid $color-black;
+  border-color: $color-black transparent transparent $color-black;
+  transform: rotate(45deg);
+}

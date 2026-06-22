@@ -1,0 +1,69 @@
+@import "var.scss";
+@import "global.scss";
+
+div,
+ul,
+li {
+  box-sizing: border-box;
+}
+
+.singer {
+  width: 100%;
+  margin: $header-height + 24px auto 40px;
+  padding: 0 16px 40px;
+  background: transparent;
+  .singer-header {
+    width: 100%;
+    padding: 0 6px;
+    li {
+      display: inline-block;
+      line-height: 40px;
+      margin: 20px 16px 10px 0;
+      font-size: 15px;
+      font-weight: 500;
+      color: #475569;
+      border-bottom: none;
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      transition: all 0.2s ease;
+    }
+    li.active {
+      color: #0f172a;
+      font-weight: 700;
+      background: rgba(14, 165, 233, 0.18);
+      border-bottom: none;
+    }
+    li:hover {
+      transform: translateY(-1px);
+      background: rgba(14, 165, 233, 0.12);
+    }
+  }
+}
+
+.singer-header,
+.singer > div {
+  width: 100%;
+  max-width: $content-max-width;
+  margin: 0 auto;
+  padding: 18px 22px;
+  background:
+    radial-gradient(800px 300px at 85% 0%, rgba(56, 189, 248, 0.16), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 20px;
+  box-shadow: $box-shadow;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.singer > div {
+  margin-top: 16px;
+}
+
+.pagination {
+  @include layout;
+}

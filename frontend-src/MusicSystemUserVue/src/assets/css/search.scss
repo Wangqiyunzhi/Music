@@ -1,0 +1,39 @@
+@import "var.scss";
+@import "global.scss";
+
+.search{
+  width: 100%;
+  max-width: $content-max-width;
+  margin: $header-height + 24px auto 40px;
+  background-color: $color-white;
+  border-radius: 20px;
+  border: 1px solid $color-light-grey;
+  box-shadow: $box-shadow;
+  position: relative;
+  padding: 10px 20px 30px;
+}
+
+.searchList-nav {
+  @include layout(space-around);
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: $color-black;
+  span {
+    line-height: 50px;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 999px;
+    color: $color-grey;
+    transition: all 0.2s ease;
+    &:hover {
+      background: #eaf1ff;
+      color: $color-black;
+    }
+  }
+}
+
+.isActive {
+  font-weight: 700;
+  background: #eaf1ff;
+  border-bottom: none;
+}

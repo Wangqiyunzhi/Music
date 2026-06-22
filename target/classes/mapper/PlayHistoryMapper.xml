@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rabbiter.music.dao.PlayHistoryMapper">
+
+    <resultMap id="HistoryResultMap" type="com.rabbiter.music.vo.PlayHistoryItem">
+        <id column="id" property="id"/>
+        <result column="singer_id" property="singerId"/>
+        <result column="name" property="name"/>
+        <result column="introduction" property="introduction"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="pic" property="pic"/>
+        <result column="lyric" property="lyric"/>
+        <result column="url" property="url"/>
+        <result column="play_count" property="playCount"/>
+        <result column="play_time" property="playTime"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.rabbiter.music.pojo.PlayHistory" useGeneratedKeys="true" keyProperty="id">
+        insert into play_history (user_id, song_id)
+        values (#{userId}, #{songId})
+    </insert>
+
+    <delete id="deleteByUserId" parameterType="java.lang.Integer">
+        delete from play_history where user_id = #{userId}
+    </delete>
+
+    <select id="historyOfUser" resultMap="HistoryResultMap">
+        select
+            s.id, s.singer_id, s.name, s.introduction, s.create_time, s.update_time,
+            s.pic, s.lyric, s.url, s.play_count,
+            ph.play_time
+        from play_history ph
+        join song s on s.id = ph.song_id
+        where ph.user_id = #{userId}
+        order by ph.play_time desc, ph.id desc
+        limit #{limit}
+    </select>
+
+</mapper>

@@ -1,0 +1,1 @@
+ALTER TABLE song ADD COLUMN play_count INT DEFAULT 0 COMMENT '???';
